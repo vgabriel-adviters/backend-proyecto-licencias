@@ -15,12 +15,14 @@ public class UserController {
     private UserService userService;
 
     @PostMapping()
-    public ResponseEntity<String> access(@RequestBody UserDto userDto) {
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public UserDto access(@RequestBody UserDto userDto) {
         boolean existe = userService.exists(userDto.getUsername(), userDto.getPassword());
         if(existe) {
-            return new ResponseEntity<>("Acceso permitido", HttpStatus.CREATED);
+            return (userDto);
         }
-        return new ResponseEntity<>("No tiene autorización", HttpStatus.UNAUTHORIZED);
+        return null;
     }
 
 }
