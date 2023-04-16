@@ -1,6 +1,5 @@
 package com.adviters.administracionusuarios.models.dtos;
 
-import com.adviters.administracionusuarios.models.entities.RolEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,13 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class RolDto {
 
     private Long id;
 
-    private String username;
+    private String nombre;
 
-    private String password;
 
-    private RolEntity rol;
 }

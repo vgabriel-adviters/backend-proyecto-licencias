@@ -1,6 +1,7 @@
 package com.adviters.administracionusuarios.controllers;
 
 import com.adviters.administracionusuarios.models.dtos.UserDto;
+import com.adviters.administracionusuarios.models.entities.UserEntity;
 import com.adviters.administracionusuarios.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,18 @@ public class UserController {
             return (userDto);
         }
         return null;
+    }
+
+    @GetMapping("/{id}")
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UserDto> getUsuarioById(@PathVariable Long id) {
+        UserDto usuario = userService.getUserById(id);
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
