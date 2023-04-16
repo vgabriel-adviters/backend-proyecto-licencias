@@ -24,8 +24,8 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_rol")
-    private RolEntity rol;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "id_rol")
+//    private RolEntity rol;
 
 }

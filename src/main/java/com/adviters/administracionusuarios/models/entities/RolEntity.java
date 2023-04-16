@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "rol")
@@ -17,4 +19,7 @@ public class RolEntity {
     private Long id;
 
     private String nombre;
+
+//    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)
+//    private Set<UserEntity> userEntities = new HashSet<>();
 }

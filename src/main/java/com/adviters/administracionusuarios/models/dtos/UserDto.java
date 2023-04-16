@@ -16,5 +16,5 @@ public class UserDto {
 
     private String password;
 
-    private RolEntity rol;
+//    private RolEntity rol;
 }

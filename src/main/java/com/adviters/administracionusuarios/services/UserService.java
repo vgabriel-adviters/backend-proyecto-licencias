@@ -28,4 +28,7 @@ public class UserService {
     public boolean exists(String username, String password) {
         return userRepository.existeUsuarioPorCredenciales(username, password);
     }
+
+
+
 }
