@@ -1,10 +1,12 @@
 package com.adviters.administracionusuarios.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "licencias_tipo")
@@ -19,4 +21,8 @@ public class LicenciaTipoEntity {
 
     @Column(name = "nombre")
     private String nombre;
+
+    @OneToMany(mappedBy = "tipo")
+    @JsonBackReference
+    private List<LicenciaEntity> licencias;
 }
