@@ -13,14 +13,12 @@ public class UserMapper {
         dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
         dto.setPassword(entity.getPassword());
-//        dto.setRol(entityToDTO(entity.getRol()));
-
+        dto.setRol(entity.getRol().getNombre());
         return dto;
     }
 
     public static UserEntity dtoToEntity(UserDto dto) {
         UserEntity entity = new UserEntity();
-        // entity.setId(dto.getId());
         entity.setUsername(dto.getUsername());
         entity.setPassword(dto.getPassword());
         return entity;

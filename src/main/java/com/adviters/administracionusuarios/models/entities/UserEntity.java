@@ -1,5 +1,6 @@
 package com.adviters.administracionusuarios.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +25,13 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_rol")
-    private RolEntity rol;
+
+    @OneToOne(targetEntity = RolEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_id_rol")
+    @JsonManagedReference
+    private  RolEntity rol;
+
+
+
 
 }

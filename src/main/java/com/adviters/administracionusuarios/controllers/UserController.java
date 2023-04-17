@@ -4,6 +4,7 @@ import com.adviters.administracionusuarios.models.dtos.UserDto;
 import com.adviters.administracionusuarios.models.entities.UserEntity;
 import com.adviters.administracionusuarios.repositories.UserRepository;
 import com.adviters.administracionusuarios.services.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+
 
 @RestController
+//@CrossOrigin
 @RequestMapping("/users")
 public class UserController {
 
@@ -21,6 +25,7 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
 
     @PostMapping()
     @CrossOrigin
@@ -42,16 +47,13 @@ public class UserController {
 
     }
 
+
     @GetMapping("/{id}")
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<UserDto> getUsuarioById(@PathVariable Long id) {
-        UserDto usuario = userService.getUserById(id);
-        if (usuario != null) {
-            return ResponseEntity.ok(usuario);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public UserDto getUsuarioById(@PathVariable Long id) {
+        return userService.getUserById(id);
+
     }
 
     @GetMapping("/all")
