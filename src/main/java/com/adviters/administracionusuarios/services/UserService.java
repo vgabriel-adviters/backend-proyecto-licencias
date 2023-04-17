@@ -4,9 +4,11 @@ import com.adviters.administracionusuarios.models.dtos.UserDto;
 import com.adviters.administracionusuarios.models.entities.UserEntity;
 import com.adviters.administracionusuarios.repositories.UserRepository;
 import com.adviters.administracionusuarios.utils.mappers.UserMapper;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +20,9 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
+
+
+
     public UserDto getUserById(Long id) {
         Optional<UserEntity> userEntityOptional = userRepository.findById(id);
         UserEntity userEntity = userEntityOptional.get();
@@ -25,7 +30,16 @@ public class UserService {
 
     }
 
+//    public UserDto getUsers() {
+//        List<UserEntity> userEntityOptional = userRepository.findAll();
+//        List <UserEntity> userEntity = userEntityOptional;
+//        return userMapper.entityToDTO(userEntity);
+//    }
+
     public boolean exists(String username, String password) {
         return userRepository.existeUsuarioPorCredenciales(username, password);
     }
+
+
+
 }
