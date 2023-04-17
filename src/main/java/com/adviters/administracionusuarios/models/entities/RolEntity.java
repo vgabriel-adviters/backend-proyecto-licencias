@@ -20,6 +20,6 @@ public class RolEntity {
 
     private String nombre;
 
-//    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)
-//    private Set<UserEntity> userEntities = new HashSet<>();
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)
+    private Set<UserEntity> userEntities = new HashSet<>();
 }

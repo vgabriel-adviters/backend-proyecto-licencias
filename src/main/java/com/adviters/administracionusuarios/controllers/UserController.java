@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -41,7 +42,6 @@ public class UserController {
 
     }
 
-
     @GetMapping("/{id}")
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
@@ -52,6 +52,13 @@ public class UserController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/all")
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserEntity> getAllUsers() {
+        return userRepository.findAll();
     }
 
 }

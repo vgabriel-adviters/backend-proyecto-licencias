@@ -15,7 +15,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_users")
+    @Column(name = "id_user")
     private Long id;
 
     @Column(name = "username")
@@ -24,8 +24,8 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "id_rol")
-//    private RolEntity rol;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_rol")
+    private RolEntity rol;
 
 }
