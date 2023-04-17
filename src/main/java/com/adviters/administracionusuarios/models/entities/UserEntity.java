@@ -31,6 +31,41 @@ public class UserEntity {
     @JsonManagedReference
     private  RolEntity rol;
 
+    @Column(name = "id_supervisor")
+    private Long id_supervisor;
+
+    @Column(name = "fecha_de_nacimiento")
+    private String fecha_de_nacimiento;
+
+    @Column(name = "fecha_de_ingreso")
+    private String fecha_de_ingreso;
+
+    @Column(name = "direccion")
+    private String direccion;
+
+    @Column(name = "dni")
+    private String dni;
+
+    @Column(name = "cuil")
+    private String cuil;
+
+    @Column(name = "dias_de_vacaciones")
+    private String dias_de_vacaciones;
+
+    @Column(name = "foto")
+    private  String foto;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
