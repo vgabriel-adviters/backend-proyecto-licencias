@@ -39,15 +39,6 @@ public class UserController {
         return null;
     }
 
-    @PostMapping("/newUser")
-    @CrossOrigin
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity <String> saveUser(@RequestBody UserEntity userEntity) {
-       userRepository.save(userEntity);
-       return ResponseEntity.ok("Data guardada");
-
-    }
-
     @GetMapping("/{id}")
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)

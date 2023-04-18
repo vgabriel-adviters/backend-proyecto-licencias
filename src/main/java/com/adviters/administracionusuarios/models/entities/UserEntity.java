@@ -84,7 +84,7 @@ public class UserEntity {
     @JsonManagedReference
     private  PaisEntity pais;
 
-    @OneToMany(mappedBy = "solicitante", targetEntity = UserEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "solicitante", targetEntity = LicenciaEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<LicenciaEntity> licencias;
 

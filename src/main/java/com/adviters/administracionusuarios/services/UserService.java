@@ -70,26 +70,33 @@ public class UserService {
 
     public void guardarUsuario(UserFullDto dto) {
 
-        UserEntity entity =UserFullMapper.dtoToEntity(dto);
+        UserEntity entity =userFullMapper.dtoToEntity(dto);
         RolEntity rolEntity = new RolEntity();
         rolEntity.setNombre(dto.getRol());
         Example<RolEntity> rolExample = Example.of(rolEntity);
+        if(rolRepository.findOne(rolExample).get() != null)
         entity.setRol(rolRepository.findOne(rolExample).get());
 
         PaisEntity paisEntity = new PaisEntity();
         paisEntity.setNombre(dto.getPais());
         Example<PaisEntity> paisExample = Example.of(paisEntity);
-        entity.setPais(paisRepository.findOne(paisExample).get());
+        if(paisRepository.findOne(paisExample).get() != null){
+            entity.setPais(paisRepository.findOne(paisExample).get());
+        }
+        else{
+            entity.setPais(paisEntity);
+        }
 
         ProvinciaEntity provinciaEntity = new ProvinciaEntity();
         provinciaEntity.setNombre(dto.getProvincia());
         Example<ProvinciaEntity> provinciaExample = Example.of(provinciaEntity);
+        if(provinciaRepository.findOne(provinciaExample).get() != null)
         entity.setProvincia(provinciaRepository.findOne(provinciaExample).get());
-
+        else{
+            entity.setProvincia(provinciaEntity);
+        }
         userRepository.save(entity);
     }
-
-
 
     public boolean exists(String username, String password) {
         return userRepository.existeUsuarioPorCredenciales(username, password);

@@ -17,6 +17,8 @@ public class UserFullMapper {
         dto.setDias_de_vacaciones(entity.getDias_de_vacaciones());
         dto.setFecha_de_nacimiento(entity.getFecha_de_nacimiento());
         dto.setFecha_de_ingreso(entity.getFecha_de_ingreso());
+        dto.setDni(entity.getDni());
+        dto.setCuil(entity.getCuil());
         dto.setFoto(entity.getFoto());
         dto.setCalle(entity.getCalle());
         dto.setAltura(entity.getAltura());
@@ -38,6 +40,8 @@ public class UserFullMapper {
         entity.setDias_de_vacaciones(dto.getDias_de_vacaciones());
         entity.setFecha_de_nacimiento(dto.getFecha_de_nacimiento());
         entity.setFecha_de_ingreso(dto.getFecha_de_ingreso());
+        entity.setDni(dto.getDni());
+        entity.setCuil(dto.getCuil());
         entity.setFoto(dto.getFoto());
         entity.setCalle(dto.getCalle());
         entity.setAltura(dto.getAltura());
