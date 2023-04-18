@@ -1,5 +1,6 @@
 package com.adviters.administracionusuarios.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,14 +19,8 @@ public class LicenciaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_tipo")
-    private Long tipo;
-
-    @Column(name = "id_estado")
-    private Long estado;
-
     @Column(name = "adjunto")
-    private Long adjunto;
+    private String adjunto;
 
     @Column(name = "fecha_peticion")
     private String fechaPeticion;
@@ -39,6 +34,21 @@ public class LicenciaEntity {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "solicitante_id")
-    private Long solicitante;
+    @OneToOne
+    @JoinColumn(name = "solicitante_id")
+    @JsonManagedReference
+    private UserEntity solicitante;
+
+    @Column(name = "activo")
+    private boolean activo = true;
+
+    @OneToOne
+    @JoinColumn(name = "tipo_id")
+    @JsonManagedReference
+    private LicenciaTipoEntity tipo;
+
+    @OneToOne
+    @JoinColumn(name = "estado_id")
+    @JsonManagedReference
+    private LicenciaEstadoEntity estado;
 }

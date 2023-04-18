@@ -1,0 +1,82 @@
+[
+  {
+    "adjunto": "pathFile1",
+    "fechaPeticion": "2023-04-17",
+    "fechaComienzo": "2023-04-17",
+    "fechaFinalizacion": "2023-04-17",
+    "descripcion": "Licencia 1",
+    "solicitante": null,
+    "tipo": "tramites",
+    "estado": "pendiente"
+  },
+  {
+    "adjunto": "pathFile2",
+    "fechaPeticion": "2023-04-17",
+    "fechaComienzo": "2023-04-17",
+    "fechaFinalizacion": "2023-04-17",
+    "descripcion": "Licencia 2",
+    "solicitante": null,
+    "tipo": "dias de estudio",
+    "estado": "aprobada"
+  },
+  {
+    "adjunto": "pathFile3",
+    "fechaPeticion": "2023-04-17",
+    "fechaComienzo": "2023-04-17",
+    "fechaFinalizacion": "2023-04-17",
+    "descripcion": "Licencia 3",
+    "solicitante": null,
+    "tipo": "tramites",
+    "estado": "rechazada"
+  },
+  {
+    "adjunto": "pathFile4",
+    "fechaPeticion": "2023-04-17",
+    "fechaComienzo": "2023-04-17",
+    "fechaFinalizacion": "2023-04-17",
+    "descripcion": "Licencia 4",
+    "solicitante": null,
+    "tipo": "vacaciones",
+    "estado": "pendiente"
+  },
+  {
+    "adjunto": "pathFile5",
+    "fechaPeticion": "2023-04-17",
+    "fechaComienzo": "2023-04-17",
+    "fechaFinalizacion": "2023-04-17",
+    "descripcion": "Licencia 5",
+    "solicitante": null,
+    "tipo": "tramites",
+    "estado": "rechazada"
+  },
+  {
+    "adjunto": "pathFile6",
+    "fechaPeticion": "2023-04-17",
+    "fechaComienzo": "2023-04-17",
+    "fechaFinalizacion": "2023-04-17",
+    "descripcion": "Licencia 6",
+    "solicitante": null,
+    "tipo": "tramites",
+    "estado": "pendiente"
+  },
+  {
+    "adjunto": "pathFile7",
+    "fechaPeticion": "2023-04-17",
+    "fechaComienzo": "2023-04-17",
+    "fechaFinalizacion": "2023-04-17",
+    "descripcion": "Licencia 7",
+    "solicitante": null,
+    "tipo": "tramites",
+    "estado": "rechazada"
+  },
+  {
+    "adjunto": "pathFile8",
+    "fechaPeticion": "2023-04-17",
+    "fechaComienzo": "2023-04-17",
+    "fechaFinalizacion": "2023-04-17",
+    "descripcion": "Licencia 8",
+    "solicitante": null,
+    "tipo": "dias de estudio",
+    "estado": "pendiente"
+  }
+]

@@ -6,8 +6,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-//@AllArgsConstructor
-public class LicenciaFullDto {
+@AllArgsConstructor
+public class FeriadoDto {
 
+    private String fecha;
 
+    private String motivo;
 }
