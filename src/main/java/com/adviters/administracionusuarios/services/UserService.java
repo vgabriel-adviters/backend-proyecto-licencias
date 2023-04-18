@@ -2,14 +2,8 @@ package com.adviters.administracionusuarios.services;
 
 import com.adviters.administracionusuarios.models.dtos.UserDto;
 import com.adviters.administracionusuarios.models.dtos.UserFullDto;
-import com.adviters.administracionusuarios.models.entities.PaisEntity;
-import com.adviters.administracionusuarios.models.entities.ProvinciaEntity;
-import com.adviters.administracionusuarios.models.entities.RolEntity;
-import com.adviters.administracionusuarios.models.entities.UserEntity;
-import com.adviters.administracionusuarios.repositories.PaisRepository;
-import com.adviters.administracionusuarios.repositories.ProvinciaRepository;
-import com.adviters.administracionusuarios.repositories.RolRepository;
-import com.adviters.administracionusuarios.repositories.UserRepository;
+import com.adviters.administracionusuarios.models.entities.*;
+import com.adviters.administracionusuarios.repositories.*;
 import com.adviters.administracionusuarios.utils.mappers.UserFullMapper;
 import com.adviters.administracionusuarios.utils.mappers.UserMapper;
 import org.apache.catalina.User;
@@ -29,12 +23,12 @@ public class UserService {
 
     @Autowired
     private RolRepository rolRepository;
-
     @Autowired
     private PaisRepository paisRepository;
-
     @Autowired
     private ProvinciaRepository provinciaRepository;
+    @Autowired
+    private LocalidadRepository localidadRepository;
     @Autowired
     private UserMapper userMapper;
 
@@ -80,20 +74,33 @@ public class UserService {
         PaisEntity paisEntity = new PaisEntity();
         paisEntity.setNombre(dto.getPais());
         Example<PaisEntity> paisExample = Example.of(paisEntity);
-        if(paisRepository.findOne(paisExample).get() != null){
-            entity.setPais(paisRepository.findOne(paisExample).get());
-        }
-        else{
+
+        Optional<PaisEntity> paisOptional = paisRepository.findOne(paisExample);
+        System.out.println(paisOptional);
+        if (paisRepository.exists(paisExample)) {
+            System.out.println("Entre al if");
+            entity.setPais(paisOptional.get());
+        } else {
+            System.out.println("Entre al else");
             entity.setPais(paisEntity);
         }
 
         ProvinciaEntity provinciaEntity = new ProvinciaEntity();
         provinciaEntity.setNombre(dto.getProvincia());
         Example<ProvinciaEntity> provinciaExample = Example.of(provinciaEntity);
-        if(provinciaRepository.findOne(provinciaExample).get() != null)
+        if(provinciaRepository.findOne(provinciaExample) != null)
         entity.setProvincia(provinciaRepository.findOne(provinciaExample).get());
         else{
             entity.setProvincia(provinciaEntity);
+        }
+
+        LocalidadEntity localidadEntity = new LocalidadEntity();
+        localidadEntity.setNombre(dto.getLocalidad());
+        Example<LocalidadEntity> localidadExample = Example.of(localidadEntity);
+        if(localidadRepository.findOne(localidadExample) != null)
+            entity.setLocalidad(localidadRepository.findOne(localidadExample).get());
+        else{
+            entity.setLocalidad(localidadEntity);
         }
         userRepository.save(entity);
     }

@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "rol")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class RolEntity {
     @Id
@@ -26,8 +27,5 @@ public class RolEntity {
     @JsonBackReference
     private List<UserEntity> user;
 
-    public RolEntity(){
-        this.user = new ArrayList<>();
-    }
 
 }

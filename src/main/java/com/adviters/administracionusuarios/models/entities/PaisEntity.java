@@ -3,6 +3,7 @@ package com.adviters.administracionusuarios.models.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "pais")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class PaisEntity {
     @Id
@@ -25,7 +27,4 @@ public class PaisEntity {
     @JsonBackReference
     private List<UserEntity> user;
 
-    public PaisEntity(){
-        this.user = new ArrayList<>();
-    }
 }
