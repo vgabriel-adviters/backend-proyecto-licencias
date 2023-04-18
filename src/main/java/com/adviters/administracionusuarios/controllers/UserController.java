@@ -1,6 +1,7 @@
 package com.adviters.administracionusuarios.controllers;
 
 import com.adviters.administracionusuarios.models.dtos.UserDto;
+import com.adviters.administracionusuarios.models.dtos.UserFullDto;
 import com.adviters.administracionusuarios.models.entities.UserEntity;
 import com.adviters.administracionusuarios.repositories.UserRepository;
 import com.adviters.administracionusuarios.services.UserService;
@@ -47,7 +48,6 @@ public class UserController {
 
     }
 
-
     @GetMapping("/{id}")
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
@@ -56,11 +56,28 @@ public class UserController {
 
     }
 
+    @GetMapping("/allInfo/{id}")
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public UserFullDto getUsuarioFullInfoById(@PathVariable Long id) {
+        return userService.getUserAllInfoById(id);
+
+    }
+
     @GetMapping("/all")
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
-    public List<UserEntity> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getAllUsers() {
+        return userService.getUsers();
     }
+
+    @PostMapping("/saveUser")
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> crearUsuario(@RequestBody UserFullDto dto) {
+        userService.guardarUsuario(dto);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

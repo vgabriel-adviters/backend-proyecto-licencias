@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.JoinColumn;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,5 +20,10 @@ public class UserDto {
     private String password;
 
     private String rol;
+
+    private Long id_supervisor;
+
+    private String dias_de_vacaciones;
+
 
 }
