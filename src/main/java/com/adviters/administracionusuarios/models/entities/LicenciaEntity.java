@@ -34,10 +34,10 @@ public class LicenciaEntity {
     @Column(name = "descripcion")
     private String descripcion;
 
- /*   @OneToOne
+    @OneToOne
     @JoinColumn(name = "solicitante_id")
     @JsonManagedReference
-    private Long solicitante;*/
+    private UserEntity solicitante;
 
     @Column(name = "activo")
     private boolean activo = true;

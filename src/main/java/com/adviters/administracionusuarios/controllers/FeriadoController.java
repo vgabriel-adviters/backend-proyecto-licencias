@@ -1,6 +1,7 @@
 package com.adviters.administracionusuarios.controllers;
 
 import com.adviters.administracionusuarios.models.dtos.FeriadoDto;
+import com.adviters.administracionusuarios.models.entities.FeriadoEntity;
 import com.adviters.administracionusuarios.services.FeriadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +31,11 @@ public class FeriadoController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("/nacionales")
+    public ResponseEntity<?> cargarFeriadosNacionales(@RequestBody List<FeriadoDto> feriadosDto) {
+        feriadoService.guardarFeriados(feriadosDto);
+        return ResponseEntity.ok().build();
     }
 }

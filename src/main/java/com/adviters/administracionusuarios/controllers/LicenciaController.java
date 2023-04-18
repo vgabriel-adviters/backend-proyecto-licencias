@@ -50,6 +50,4 @@ public class LicenciaController {
     public List<LicenciaFullDto> obtenerLicencias() {
         return licenciaService.buscarTodasLasLicencias().get();
     }
-
-
 }

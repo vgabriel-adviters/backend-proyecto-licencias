@@ -29,4 +29,11 @@ public class FeriadoService {
         List<FeriadoDto> dtos = feriadoMapper.entityLisToDtoList(entities);
         return Optional.ofNullable(dtos);
     }
+
+    public void guardarFeriados(List<FeriadoDto> dtos) {
+        for (FeriadoDto dto : dtos) {
+            FeriadoEntity entity = feriadoMapper.dtoToEntity(dto);
+            feriadoRepository.save(entity);
+        }
+    }
 }
