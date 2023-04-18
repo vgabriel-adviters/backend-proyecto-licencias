@@ -22,6 +22,9 @@ public class LicenciaTipoEntity {
     @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "activo")
+    private boolean activo = true;
+
     @OneToMany(mappedBy = "tipo")
     @JsonBackReference
     private List<LicenciaEntity> licencias;

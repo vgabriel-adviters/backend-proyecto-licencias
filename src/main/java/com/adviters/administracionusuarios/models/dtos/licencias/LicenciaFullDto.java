@@ -1,4 +1,4 @@
-package com.adviters.administracionusuarios.models.dtos;
+package com.adviters.administracionusuarios.models.dtos.licencias;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

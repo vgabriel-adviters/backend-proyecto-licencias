@@ -39,6 +39,9 @@ public class LicenciaEntity {
     @JsonManagedReference
     private Long solicitante;*/
 
+    @Column(name = "activo")
+    private boolean activo = true;
+
     @OneToOne
     @JoinColumn(name = "tipo_id")
     @JsonManagedReference
