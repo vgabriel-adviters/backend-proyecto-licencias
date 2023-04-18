@@ -16,7 +16,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "username")
@@ -40,9 +40,6 @@ public class UserEntity {
     @Column(name = "fecha_de_ingreso")
     private String fecha_de_ingreso;
 
-    @Column(name = "direccion")
-    private String direccion;
-
     @Column(name = "dni")
     private String dni;
 
@@ -55,18 +52,35 @@ public class UserEntity {
     @Column(name = "foto")
     private  String foto;
 
+    @Column(name = "calle")
+    private  String calle;
 
+    @Column(name = "altura")
+    private  Long altura;
 
+    @Column(name = "torre")
+    private  String torre;
 
+    @Column(name = "piso")
+    private  int piso;
 
+    @Column(name = "departamento")
+    private  String departamento;
 
+    @OneToOne(targetEntity = LocalidadEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_id_localidad")
+    @JsonManagedReference
+    private  LocalidadEntity localidad;
 
+    @OneToOne(targetEntity = ProvinciaEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_id_provincia")
+    @JsonManagedReference
+    private  ProvinciaEntity provincia;
 
-
-
-
-
-
+    @OneToOne(targetEntity = PaisEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_id_pais")
+    @JsonManagedReference
+    private  PaisEntity pais;
 
 
 }
