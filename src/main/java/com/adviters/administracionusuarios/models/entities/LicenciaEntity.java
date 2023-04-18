@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Locale;
+import java.sql.Date;
 
 @Entity
 @Table(name = "licencias")
@@ -23,13 +23,13 @@ public class LicenciaEntity {
     private String adjunto;
 
     @Column(name = "fecha_peticion")
-    private String fechaPeticion;
+    private Date fechaPeticion;
 
     @Column(name = "fecha_comienzo")
-    private String fechaComienzo;
+    private Date fechaComienzo;
 
     @Column(name = "fecha_finalizacion")
-    private String fechaFinalizacion;
+    private Date fechaFinalizacion;
 
     @Column(name = "descripcion")
     private String descripcion;

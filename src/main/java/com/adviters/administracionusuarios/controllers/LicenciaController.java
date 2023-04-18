@@ -50,4 +50,14 @@ public class LicenciaController {
     public List<LicenciaFullDto> obtenerLicencias() {
         return licenciaService.buscarTodasLasLicencias().get();
     }
+/*
+    @GetMapping
+    public List<LicenciaFullDto> obtenerProximasLicenciasAprobadas() {
+        return null;
+    }
+
+    @GetMapping
+    public List<LicenciaFullDto> obtenerSolicitudesAprobadas() {
+        return null;
+    }*/
 }
