@@ -68,7 +68,16 @@ public class UserController {
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
     public List<UserDto> getAllUsers() {
-        return userService.getUsers().getUserDtoList();
+        return userService.getUsers();
     }
+
+    @PostMapping("/saveUser")
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> crearUsuario(@RequestBody UserFullDto dto) {
+        userService.guardarUsuario(dto);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

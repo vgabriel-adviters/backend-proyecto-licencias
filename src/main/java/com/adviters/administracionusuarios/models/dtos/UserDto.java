@@ -25,8 +25,5 @@ public class UserDto {
 
     private String dias_de_vacaciones;
 
-    private List<UserDto> userDtoList;
 
-    public void setUserList(List<UserDto> userDtoList) {
-    }
 }

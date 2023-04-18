@@ -1,11 +1,13 @@
 package com.adviters.administracionusuarios.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -82,5 +84,8 @@ public class UserEntity {
     @JsonManagedReference
     private  PaisEntity pais;
 
+    @OneToMany(mappedBy = "solicitante", targetEntity = UserEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<LicenciaEntity> licencias;
 
 }
