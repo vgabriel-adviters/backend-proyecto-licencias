@@ -18,6 +18,8 @@ public class UserFullDto {
 
     private String username;
 
+    private String apellido;
+
     private String password;
 
     private String rol;
@@ -35,6 +37,12 @@ public class UserFullDto {
     private String dias_de_vacaciones;
 
     private  String foto;
+
+    private String email;
+
+    private String telefono;
+
+    private String codigo_postal;
 
     private  String calle;
 

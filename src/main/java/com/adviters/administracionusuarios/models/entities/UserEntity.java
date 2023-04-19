@@ -24,6 +24,9 @@ public class UserEntity {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "apellido")
+    private String apellido;
+
     @Column(name = "password")
     private String password;
 
@@ -44,6 +47,15 @@ public class UserEntity {
 
     @Column(name = "dias_de_vacaciones")
     private String dias_de_vacaciones;
+
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "codigo_postal")
+    private String codigo_postal;
 
     @Column(name = "foto")
     private String foto;

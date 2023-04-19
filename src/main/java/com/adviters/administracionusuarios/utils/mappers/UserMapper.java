@@ -12,6 +12,7 @@ public class UserMapper {
         UserDto dto = new UserDto();
         dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
+        dto.setApellido(entity.getApellido());
         dto.setPassword(entity.getPassword());
         dto.setRol(entity.getRol().getNombre());
         dto.setId_supervisor(entity.getId_supervisor());
@@ -22,6 +23,7 @@ public class UserMapper {
     public static UserEntity dtoToEntity(UserDto dto) {
         UserEntity entity = new UserEntity();
         entity.setUsername(dto.getUsername());
+        entity.setApellido(dto.getApellido());
         entity.setPassword(dto.getPassword());
         entity.setId_supervisor(dto.getId_supervisor());
         entity.setDias_de_vacaciones(dto.getDias_de_vacaciones());
