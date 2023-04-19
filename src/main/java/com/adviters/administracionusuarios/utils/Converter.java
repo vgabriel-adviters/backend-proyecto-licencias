@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Converter {
 
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static String dateToString(Date date) {
         LocalDate localDate = date.toLocalDate();
@@ -14,8 +14,8 @@ public class Converter {
     }
 
     public static Date stringToDate(String dateString) {
-        LocalDate fechaLocal = LocalDate.parse(dateString, formatter);
-        Date fechaSql = java.sql.Date.valueOf(fechaLocal);
+        LocalDate localDate = LocalDate.parse(dateString, formatter);
+        Date fechaSql = java.sql.Date.valueOf(localDate);
         return fechaSql;
     }
 }

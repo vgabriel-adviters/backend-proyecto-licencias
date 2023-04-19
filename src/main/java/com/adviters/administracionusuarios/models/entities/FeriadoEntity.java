@@ -3,8 +3,10 @@ package com.adviters.administracionusuarios.models.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "feriados")
@@ -18,7 +20,8 @@ public class FeriadoEntity {
     private Long id;
 
     @Column(name = "fecha")
-    private String fecha;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date fecha;
 
     @Column(name = "motivo")
     private String motivo;
