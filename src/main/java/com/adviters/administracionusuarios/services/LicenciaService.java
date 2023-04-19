@@ -2,6 +2,7 @@ package com.adviters.administracionusuarios.services;
 
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaFullDto;
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaMinimaDto;
+import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaNuevaDto;
 import com.adviters.administracionusuarios.models.entities.LicenciaEntity;
 import com.adviters.administracionusuarios.models.entities.LicenciaEstadoEntity;
 import com.adviters.administracionusuarios.models.entities.LicenciaTipoEntity;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,8 +39,10 @@ public class LicenciaService {
     private UserRepository userRepository;
 
 
-    public void guardar(LicenciaFullDto dto) {
-        LicenciaEntity entity = licenciaMapper.dtoToEntity(dto);
+    public void guardar(LicenciaNuevaDto dto) {
+
+        LicenciaEntity entity = licenciaMapper.dtoToNuevaEntity(dto);
+        entity.setFechaPeticion(LocalDate.now().toString());
 
         LicenciaTipoEntity tipoEntity = new LicenciaTipoEntity();
         tipoEntity.setNombre(dto.getTipo());
@@ -46,11 +50,12 @@ public class LicenciaService {
         entity.setTipo(tipoRepository.findOne(tipoExample).get());
 
         LicenciaEstadoEntity estadoEntity = new LicenciaEstadoEntity();
-        estadoEntity.setNombre(dto.getEstado());
+        estadoEntity.setNombre("pendiente");
         Example<LicenciaEstadoEntity> estadoExample = Example.of(estadoEntity);
         entity.setEstado(estadoRepository.findOne(estadoExample).get());
 
-        entity.setSolicitante(userRepository.findById(dto.getSolicitante()).get());
+        entity.setSolicitante(userRepository.findById(dto.getSolicitanteId()).get());
+        entity.setSupervisor(userRepository.findById(dto.getSupervisorId()).get());
 
         licenciaRepository.save(entity);
     }
@@ -72,4 +77,5 @@ public class LicenciaService {
         List<LicenciaFullDto> dtos = licenciaMapper.entitiesToDtos(entities);
         return Optional.ofNullable(dtos);
     }
+    
 }

@@ -30,5 +30,11 @@ public class LicenciaFullDto {
 
     private String descripcion;
 
-    private Long solicitante;
+    private String nombreSolicitante;
+
+    private String fotoSolicitante;
+
+    private String nombreSupervisor;
+
+    private String fotoSupervisor;
 }

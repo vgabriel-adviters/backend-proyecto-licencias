@@ -2,51 +2,63 @@ package com.adviters.administracionusuarios.utils.mappers;
 
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaFullDto;
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaMinimaDto;
+import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaNuevaDto;
 import com.adviters.administracionusuarios.models.entities.LicenciaEntity;
-import com.adviters.administracionusuarios.utils.Converter;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class LicenciaMapper {
 
+    public LicenciaEntity dtoToNuevaEntity(LicenciaNuevaDto dto) {
+        LicenciaEntity entity = new LicenciaEntity();
+        entity.setAdjunto(dto.getAdjunto());
+        entity.setFechaComienzo(dto.getFechaComienzo());
+        entity.setFechaFinalizacion(dto.getFechaFinalizacion());
+        entity.setDescripcion(dto.getDescripcion());
+        return entity;
+    }
+
     public LicenciaMinimaDto entityToMinimalDto(LicenciaEntity entity) {
         LicenciaMinimaDto dto = new LicenciaMinimaDto();
         dto.setId(entity.getId());
-
-        dto.setFechaComienzo(Converter.dateToString(entity.getFechaComienzo()));
-        dto.setFechaFinalizacion(Converter.dateToString(entity.getFechaFinalizacion()));
-
         dto.setTipo(entity.getTipo().getNombre());
         dto.setEstado(entity.getEstado().getNombre());
-        //dto.setSolicitante(entity.getSolicitante());
+        dto.setFechaComienzo(entity.getFechaComienzo());
+        dto.setFechaFinalizacion(entity.getFechaFinalizacion());
+        dto.setFotoSolicitante(entity.getSolicitante().getFoto());
+        dto.setNombreSolicitante(entity.getSolicitante().getUsername());
+        dto.setSolicitanteId(entity.getSolicitante().getId());
         return dto;
     }
 
     public LicenciaFullDto entityToFullDto(LicenciaEntity entity) {
         LicenciaFullDto dto = new LicenciaFullDto();
         dto.setId(entity.getId());
-        dto.setAdjunto(entity.getAdjunto());
-
-        dto.setFechaPeticion(Converter.dateToString(entity.getFechaPeticion()));
-        dto.setFechaComienzo(Converter.dateToString(entity.getFechaComienzo()));
-        dto.setFechaFinalizacion(Converter.dateToString(entity.getFechaFinalizacion()));
-
-        dto.setDescripcion(entity.getDescripcion());
         dto.setTipo(entity.getTipo().getNombre());
         dto.setEstado(entity.getEstado().getNombre());
-        //dto.setSolicitante(entity.getSolicitante());
+        dto.setAdjunto(entity.getAdjunto());
+        dto.setFechaPeticion(entity.getFechaPeticion());
+        dto.setFechaComienzo(entity.getFechaComienzo());
+        dto.setFechaFinalizacion(entity.getFechaFinalizacion());
+        dto.setDescripcion(entity.getDescripcion());
+        dto.setNombreSolicitante(entity.getSolicitante().getUsername());
+        dto.setFotoSolicitante(entity.getSolicitante().getFoto());
+        dto.setNombreSupervisor(entity.getSupervisor().getUsername());
+        dto.setFotoSupervisor(entity.getSupervisor().getFoto());
         return dto;
     }
 
     public LicenciaEntity dtoToEntity(LicenciaFullDto dto) {
         LicenciaEntity entity = new LicenciaEntity();
+        entity.setId(dto.getId());
         entity.setAdjunto(dto.getAdjunto());
-        entity.setFechaPeticion(Converter.stringToDate(dto.getFechaPeticion()));
-        entity.setFechaComienzo(Converter.stringToDate(dto.getFechaComienzo()));
-        entity.setFechaFinalizacion(Converter.stringToDate(dto.getFechaFinalizacion()));
+        entity.setFechaPeticion(dto.getFechaPeticion());
+        entity.setFechaComienzo(dto.getFechaComienzo());
+        entity.setFechaFinalizacion(dto.getFechaFinalizacion());
         entity.setDescripcion(dto.getDescripcion());
         return entity;
     }

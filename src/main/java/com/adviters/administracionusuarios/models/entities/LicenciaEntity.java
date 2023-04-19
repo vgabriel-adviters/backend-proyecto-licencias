@@ -23,13 +23,13 @@ public class LicenciaEntity {
     private String adjunto;
 
     @Column(name = "fecha_peticion")
-    private Date fechaPeticion;
+    private String fechaPeticion;
 
     @Column(name = "fecha_comienzo")
-    private Date fechaComienzo;
+    private String fechaComienzo;
 
     @Column(name = "fecha_finalizacion")
-    private Date fechaFinalizacion;
+    private String fechaFinalizacion;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -38,6 +38,11 @@ public class LicenciaEntity {
     @JoinColumn(name = "solicitante_id")
     @JsonManagedReference
     private UserEntity solicitante;
+
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = UserEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "supervisor_id")
+    @JsonManagedReference
+    private UserEntity supervisor;
 
     @Column(name = "activo")
     private boolean activo = true;

@@ -7,21 +7,19 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LicenciaMinimaDto {
+public class LicenciaNuevaDto {
 
-    private Long id;
+    private Long solicitanteId;
 
     private String tipo;
 
-    private String estado;
+    private String adjunto;
 
     private String fechaComienzo;
 
     private String fechaFinalizacion;
 
-    private String fotoSolicitante;
+    private String descripcion;
 
-    private String nombreSolicitante;
-
-    private Long solicitanteId;
+    private Long supervisorId;
 }

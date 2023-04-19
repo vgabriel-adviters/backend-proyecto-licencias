@@ -1,17 +1,11 @@
 package com.adviters.administracionusuarios.config;
 
 import com.adviters.administracionusuarios.models.entities.FeriadoEntity;
-import com.adviters.administracionusuarios.models.entities.LicenciaEstadoEntity;
 import com.adviters.administracionusuarios.repositories.FeriadoRepository;
-import com.adviters.administracionusuarios.utils.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 @Component
