@@ -20,8 +20,8 @@ public class FeriadoEntity {
     private Long id;
 
     @Column(name = "fecha")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date fecha;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String fecha;
 
     @Column(name = "motivo")
     private String motivo;

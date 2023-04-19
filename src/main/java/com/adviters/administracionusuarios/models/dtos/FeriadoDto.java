@@ -11,7 +11,7 @@ import java.sql.Date;
 @AllArgsConstructor
 public class FeriadoDto {
 
-    private Date fecha;
+    private String fecha;
 
     private String motivo;
 }
