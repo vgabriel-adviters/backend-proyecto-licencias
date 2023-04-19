@@ -34,7 +34,7 @@ public class LicenciaEntity {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = UserEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "solicitante_id")
     @JsonManagedReference
     private UserEntity solicitante;
@@ -42,12 +42,12 @@ public class LicenciaEntity {
     @Column(name = "activo")
     private boolean activo = true;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = LicenciaTipoEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "tipo_id")
     @JsonManagedReference
     private LicenciaTipoEntity tipo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = LicenciaEstadoEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "estado_id")
     @JsonManagedReference
     private LicenciaEstadoEntity estado;

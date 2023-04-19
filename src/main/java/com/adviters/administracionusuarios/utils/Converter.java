@@ -1,4 +1,4 @@
-package com.adviters.administracionusuarios.utils.mappers;
+package com.adviters.administracionusuarios.utils;
 
 import java.sql.Date;
 import java.time.LocalDate;

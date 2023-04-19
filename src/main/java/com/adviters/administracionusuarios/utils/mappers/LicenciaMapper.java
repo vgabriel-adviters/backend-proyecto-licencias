@@ -2,15 +2,10 @@ package com.adviters.administracionusuarios.utils.mappers;
 
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaFullDto;
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaMinimaDto;
-import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaNuevaDto;
 import com.adviters.administracionusuarios.models.entities.LicenciaEntity;
-import com.adviters.administracionusuarios.utils.mappers.Converter;
+import com.adviters.administracionusuarios.utils.Converter;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,17 +41,13 @@ public class LicenciaMapper {
         return dto;
     }
 
-    public LicenciaEntity nuevoDtoToNuevaEntity(LicenciaNuevaDto dto) {
+    public LicenciaEntity dtoToEntity(LicenciaFullDto dto) {
         LicenciaEntity entity = new LicenciaEntity();
-        // TODO: Guardar id del solicitante
         entity.setAdjunto(dto.getAdjunto());
-
         entity.setFechaPeticion(Converter.stringToDate(dto.getFechaPeticion()));
         entity.setFechaComienzo(Converter.stringToDate(dto.getFechaComienzo()));
         entity.setFechaFinalizacion(Converter.stringToDate(dto.getFechaFinalizacion()));
-
         entity.setDescripcion(dto.getDescripcion());
-        // El tipo y estado se terminar de insertar en el servicio
         return entity;
     }
 

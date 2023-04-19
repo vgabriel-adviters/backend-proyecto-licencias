@@ -2,13 +2,14 @@ package com.adviters.administracionusuarios.services;
 
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaFullDto;
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaMinimaDto;
-import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaNuevaDto;
 import com.adviters.administracionusuarios.models.entities.LicenciaEntity;
 import com.adviters.administracionusuarios.models.entities.LicenciaEstadoEntity;
 import com.adviters.administracionusuarios.models.entities.LicenciaTipoEntity;
+import com.adviters.administracionusuarios.models.entities.UserEntity;
 import com.adviters.administracionusuarios.repositories.LicenciaEstadoRepository;
 import com.adviters.administracionusuarios.repositories.LicenciaRepository;
 import com.adviters.administracionusuarios.repositories.LicenciaTipoRepository;
+import com.adviters.administracionusuarios.repositories.UserRepository;
 import com.adviters.administracionusuarios.utils.mappers.LicenciaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -32,18 +33,25 @@ public class LicenciaService {
     @Autowired
     private LicenciaEstadoRepository estadoRepository;
 
+    @Autowired
+    private UserRepository userRepository;
 
-    public void guardar(LicenciaNuevaDto dto) {
-        LicenciaEntity entity =licenciaMapper.nuevoDtoToNuevaEntity(dto);
+
+    public void guardar(LicenciaFullDto dto) {
+        LicenciaEntity entity = licenciaMapper.dtoToEntity(dto);
+
         LicenciaTipoEntity tipoEntity = new LicenciaTipoEntity();
         tipoEntity.setNombre(dto.getTipo());
         Example<LicenciaTipoEntity> tipoExample = Example.of(tipoEntity);
         entity.setTipo(tipoRepository.findOne(tipoExample).get());
-        // TODO: Personalizar un query para obtener el id
+
         LicenciaEstadoEntity estadoEntity = new LicenciaEstadoEntity();
         estadoEntity.setNombre(dto.getEstado());
         Example<LicenciaEstadoEntity> estadoExample = Example.of(estadoEntity);
         entity.setEstado(estadoRepository.findOne(estadoExample).get());
+
+        entity.setSolicitante(userRepository.findById(dto.getSolicitante()).get());
+
         licenciaRepository.save(entity);
     }
 

@@ -3,7 +3,6 @@ package com.adviters.administracionusuarios.controllers;
 import com.adviters.administracionusuarios.models.dtos.ErrorDto;
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaFullDto;
 import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaMinimaDto;
-import com.adviters.administracionusuarios.models.dtos.licencias.LicenciaNuevaDto;
 import com.adviters.administracionusuarios.services.LicenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ public class LicenciaController {
     private LicenciaService licenciaService;
 
     @PostMapping
-    public ResponseEntity<?> crearLicencia(@RequestBody LicenciaNuevaDto dto) {
+    public ResponseEntity<?> crearLicencia(@RequestBody LicenciaFullDto dto) {
         licenciaService.guardar(dto);
         return ResponseEntity.ok().build();
     }
@@ -50,14 +49,5 @@ public class LicenciaController {
     public List<LicenciaFullDto> obtenerLicencias() {
         return licenciaService.buscarTodasLasLicencias().get();
     }
-/*
-    @GetMapping
-    public List<LicenciaFullDto> obtenerProximasLicenciasAprobadas() {
-        return null;
-    }
 
-    @GetMapping
-    public List<LicenciaFullDto> obtenerSolicitudesAprobadas() {
-        return null;
-    }*/
 }
