@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "pais")
+@Table(name = "paises")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,8 +23,8 @@ public class PaisEntity {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(mappedBy = "pais", targetEntity = UserEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pais", targetEntity = UserEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
-    private List<UserEntity> user;
+    private List<UserEntity> users;
 
 }

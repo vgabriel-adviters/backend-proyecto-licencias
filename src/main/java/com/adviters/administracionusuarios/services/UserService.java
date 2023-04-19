@@ -51,57 +51,54 @@ public class UserService {
     }
 
 
-    public List<UserDto> getUsers() {
+    public List<UserFullDto> getUsers() {
         List<UserEntity> userEntityList = userRepository.findAll();
-        List<UserDto> userDtoList = new ArrayList<>();
-        for (UserEntity userEntity : userEntityList) {
-            userDtoList.add(userMapper.entityToDTO(userEntity));
-        }
-
+        List<UserFullDto> userDtoList = userFullMapper.entityListToDtoList(userEntityList);
         return userDtoList;
-
     }
 
     public void guardarUsuario(UserFullDto dto) {
 
-        UserEntity entity =userFullMapper.dtoToEntity(dto);
+        UserEntity entity = userFullMapper.dtoToEntity(dto);
+
         RolEntity rolEntity = new RolEntity();
         rolEntity.setNombre(dto.getRol());
         Example<RolEntity> rolExample = Example.of(rolEntity);
-        if(rolRepository.findOne(rolExample).get() != null)
-        entity.setRol(rolRepository.findOne(rolExample).get());
+        Optional<RolEntity> optionalRol = rolRepository.findOne(rolExample);
+        if(optionalRol.isPresent()) {
+            entity.setRol(optionalRol.get());
+        }
 
         PaisEntity paisEntity = new PaisEntity();
         paisEntity.setNombre(dto.getPais());
         Example<PaisEntity> paisExample = Example.of(paisEntity);
-
         Optional<PaisEntity> paisOptional = paisRepository.findOne(paisExample);
-        System.out.println(paisOptional);
-        if (paisRepository.exists(paisExample)) {
-            System.out.println("Entre al if");
+        if (paisOptional.isPresent()) {
             entity.setPais(paisOptional.get());
         } else {
-            System.out.println("Entre al else");
             entity.setPais(paisEntity);
         }
 
         ProvinciaEntity provinciaEntity = new ProvinciaEntity();
         provinciaEntity.setNombre(dto.getProvincia());
         Example<ProvinciaEntity> provinciaExample = Example.of(provinciaEntity);
-        if(provinciaRepository.findOne(provinciaExample) != null)
-        entity.setProvincia(provinciaRepository.findOne(provinciaExample).get());
-        else{
+        Optional<ProvinciaEntity> provinciaOptional = provinciaRepository.findOne(provinciaExample);
+        if (provinciaOptional.isPresent()) {
+            entity.setProvincia(provinciaOptional.get());
+        } else {
             entity.setProvincia(provinciaEntity);
         }
 
         LocalidadEntity localidadEntity = new LocalidadEntity();
         localidadEntity.setNombre(dto.getLocalidad());
         Example<LocalidadEntity> localidadExample = Example.of(localidadEntity);
-        if(localidadRepository.findOne(localidadExample) != null)
-            entity.setLocalidad(localidadRepository.findOne(localidadExample).get());
-        else{
+        Optional<LocalidadEntity> localidadOptional = localidadRepository.findOne(localidadExample);
+        if (localidadOptional.isPresent()) {
+            entity.setLocalidad(localidadOptional.get());
+        } else {
             entity.setLocalidad(localidadEntity);
         }
+
         userRepository.save(entity);
     }
 

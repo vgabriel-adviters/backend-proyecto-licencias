@@ -5,9 +5,12 @@ import com.adviters.administracionusuarios.models.dtos.UserFullDto;
 import com.adviters.administracionusuarios.models.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class UserFullMapper {
-    public static UserFullDto entityToDTO(UserEntity entity) {
+    public UserFullDto entityToDTO(UserEntity entity) {
         UserFullDto dto = new UserFullDto();
         dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
@@ -28,11 +31,10 @@ public class UserFullMapper {
         dto.setLocalidad(entity.getLocalidad().getNombre());
         dto.setProvincia(entity.getProvincia().getNombre());
         dto.setPais(entity.getPais().getNombre());
-
         return dto;
     }
 
-    public static UserEntity dtoToEntity(UserFullDto dto) {
+    public UserEntity dtoToEntity(UserFullDto dto) {
         UserEntity entity = new UserEntity();
         entity.setUsername(dto.getUsername());
         entity.setPassword(dto.getPassword());
@@ -48,7 +50,15 @@ public class UserFullMapper {
         entity.setTorre(dto.getTorre());
         entity.setPiso(dto.getPiso());
         entity.setDepartamento(dto.getDepartamento());
-
         return entity;
+    }
+
+    public List<UserFullDto> entityListToDtoList(List<UserEntity> entities) {
+        List<UserFullDto> dtos = new ArrayList<>();
+        for (UserEntity entity : entities) {
+            UserFullDto dto = entityToDTO(entity);
+            dtos.add(dto);
+        }
+        return dtos;
     }
 }

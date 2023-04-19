@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "usuarios")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,12 +26,6 @@ public class UserEntity {
 
     @Column(name = "password")
     private String password;
-
-
-    @OneToOne(targetEntity = RolEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_id_rol")
-    @JsonManagedReference
-    private  RolEntity rol;
 
     @Column(name = "id_supervisor")
     private Long id_supervisor;
@@ -52,22 +46,27 @@ public class UserEntity {
     private String dias_de_vacaciones;
 
     @Column(name = "foto")
-    private  String foto;
+    private String foto;
 
     @Column(name = "calle")
-    private  String calle;
+    private String calle;
 
     @Column(name = "altura")
-    private  Long altura;
+    private Long altura;
 
     @Column(name = "torre")
-    private  String torre;
+    private String torre;
 
     @Column(name = "piso")
-    private  int piso;
+    private int piso;
 
     @Column(name = "departamento")
-    private  String departamento;
+    private String departamento;
+
+    @OneToOne(targetEntity = RolEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_id_rol")
+    @JsonManagedReference
+    private RolEntity rol;
 
     @OneToOne(targetEntity = LocalidadEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="fk_id_localidad")
@@ -82,9 +81,9 @@ public class UserEntity {
     @OneToOne(targetEntity = PaisEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="fk_id_pais")
     @JsonManagedReference
-    private  PaisEntity pais;
+    private PaisEntity pais;
 
-    @OneToMany(mappedBy = "solicitante", targetEntity = LicenciaEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "solicitante", targetEntity = LicenciaEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
     private List<LicenciaEntity> licencias;
 

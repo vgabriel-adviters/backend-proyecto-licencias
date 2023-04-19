@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "localidad")
+@Table(name = "localidades")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,8 +24,8 @@ public class LocalidadEntity {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(mappedBy = "localidad", targetEntity = UserEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "localidad", targetEntity = UserEntity.class, cascade = CascadeType.ALL)
     @JsonBackReference
-    private List<UserEntity> user;
+    private List<UserEntity> users;
 
 }

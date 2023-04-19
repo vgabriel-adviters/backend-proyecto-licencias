@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 //@CrossOrigin
-@RequestMapping("/users")
+@RequestMapping("/api/usuarios")
 public class UserController {
 
     @Autowired
@@ -27,8 +27,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-
-    @PostMapping()
+/*    @PostMapping()
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
     public UserDto access(@RequestBody UserDto userDto) {
@@ -37,6 +36,21 @@ public class UserController {
             return (userDto);
         }
         return null;
+    }*/
+
+    @PostMapping
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> crearUsuario(@RequestBody UserFullDto dto) {
+        userService.guardarUsuario(dto);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping()
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserFullDto> getAllUsers() {
+        return userService.getUsers();
     }
 
     @GetMapping("/{id}")
@@ -54,21 +68,5 @@ public class UserController {
         return userService.getUserAllInfoById(id);
 
     }
-
-    @GetMapping("/all")
-    @CrossOrigin
-    @ResponseStatus(HttpStatus.OK)
-    public List<UserDto> getAllUsers() {
-        return userService.getUsers();
-    }
-
-    @PostMapping("/saveUser")
-    @CrossOrigin
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> crearUsuario(@RequestBody UserFullDto dto) {
-        userService.guardarUsuario(dto);
-        return ResponseEntity.ok().build();
-    }
-
 
 }
