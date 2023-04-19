@@ -16,12 +16,16 @@ public class UserFullMapper {
         dto.setUsername(entity.getUsername());
         dto.setPassword(entity.getPassword());
         dto.setRol(entity.getRol().getNombre());
+        dto.setApellido(entity.getApellido());
         dto.setId_supervisor(entity.getId_supervisor());
         dto.setDias_de_vacaciones(entity.getDias_de_vacaciones());
         dto.setFecha_de_nacimiento(entity.getFecha_de_nacimiento());
         dto.setFecha_de_ingreso(entity.getFecha_de_ingreso());
         dto.setDni(entity.getDni());
         dto.setCuil(entity.getCuil());
+        dto.setEmail(entity.getEmail());
+        dto.setTelefono(entity.getTelefono());
+        dto.setCodigo_postal(entity.getCodigo_postal());
         dto.setFoto(entity.getFoto());
         dto.setCalle(entity.getCalle());
         dto.setAltura(entity.getAltura());
@@ -37,6 +41,7 @@ public class UserFullMapper {
     public UserEntity dtoToEntity(UserFullDto dto) {
         UserEntity entity = new UserEntity();
         entity.setUsername(dto.getUsername());
+        entity.setApellido(dto.getApellido());
         entity.setPassword(dto.getPassword());
         entity.setId_supervisor(dto.getId_supervisor());
         entity.setDias_de_vacaciones(dto.getDias_de_vacaciones());
@@ -44,6 +49,9 @@ public class UserFullMapper {
         entity.setFecha_de_ingreso(dto.getFecha_de_ingreso());
         entity.setDni(dto.getDni());
         entity.setCuil(dto.getCuil());
+        entity.setEmail(dto.getEmail());
+        entity.setTelefono(dto.getTelefono());
+        entity.setCodigo_postal(dto.getCodigo_postal());
         entity.setFoto(dto.getFoto());
         entity.setCalle(dto.getCalle());
         entity.setAltura(dto.getAltura());
