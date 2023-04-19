@@ -16,6 +16,7 @@ public class InitialDataLoader {
     @PostConstruct
     public void loadInitialData() {
         if (rolRepository.count() == 0) {
+
             RolEntity rol1 = new RolEntity();
             rol1.setId(1L);
             rol1.setNombre("Usuario");

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "rol")
+@Table(name = "roles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +25,5 @@ public class RolEntity {
 
     @OneToMany(mappedBy = "rol", targetEntity = UserEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
-    private List<UserEntity> user;
-
-
+    private List<UserEntity> users;
 }
