@@ -19,6 +19,9 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Query("SELECT u FROM UserEntity u WHERE u.activo = true")
     List<UserEntity> findAll();
 
+    @Query("SELECT u FROM UserEntity u WHERE u.id_supervisor = :id AND u.activo = true")
+    List<UserEntity> findAllBySupervisor(@Param("id") Long id);
+
     @Query("SELECT u FROM UserEntity u WHERE u.username = :username AND u.password = :clave")
     Optional<UserEntity> obtenerUsuarioPorNombreYClave(@Param("username") String username, @Param("clave") String clave);
 

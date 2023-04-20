@@ -30,17 +30,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-/*    @PostMapping()
-    @CrossOrigin
-    @ResponseStatus(HttpStatus.OK)
-    public UserDto access(@RequestBody UserDto userDto) {
-        boolean existe = userService.exists(userDto.getUsername(), userDto.getPassword());
-        if(existe) {
-            return (userDto);
-        }
-        return null;
-    }*/
-
     @PostMapping("/acceso")
     public ResponseEntity<?> obtenerAcceso(@RequestBody UserLoginDto dto) {
         Optional<UserLoggedDto> usuarioOptional = userService.buscarUsuarioPorCredenciales(dto);
@@ -71,17 +60,20 @@ public class UserController {
 
     }
 
+    @GetMapping("/allInfo/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserFullDto getUsuarioFullInfoById(@PathVariable Long id) {
+        return userService.getUserAllInfoById(id);
+    }
+
+    @GetMapping("/supervisor/{id}")
+    public List<UserDto> obtenerUsuariosDeSupervisor(@PathVariable Long id) {
+        return userService.buscarUsuarios(id);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> inhabilitarUsuario(@PathVariable Long id) {
         userService.softDeleteUsuario(id);
         return ResponseEntity.ok().build();
     }
-
-    @GetMapping("/allInfo/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public UserFullDto getUsuarioFullInfoById(@PathVariable Long id) {
-        return userService.getUserAllInfoById(id);
-
-    }
-
 }

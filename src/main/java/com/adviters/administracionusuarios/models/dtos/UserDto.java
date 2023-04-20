@@ -26,6 +26,4 @@ public class UserDto {
     private Long id_supervisor;
 
     private String dias_de_vacaciones;
-
-
 }

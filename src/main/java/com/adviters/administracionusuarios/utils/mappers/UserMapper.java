@@ -6,10 +6,13 @@ import com.adviters.administracionusuarios.models.dtos.UserLoggedDto;
 import com.adviters.administracionusuarios.models.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class UserMapper {
 
-    public static UserDto entityToDTO(UserEntity entity) {
+    public UserDto entityToDTO(UserEntity entity) {
         UserDto dto = new UserDto();
         dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
@@ -30,7 +33,7 @@ public class UserMapper {
         return dto;
     }
 
-    public static UserEntity dtoToEntity(UserDto dto) {
+    public UserEntity dtoToEntity(UserDto dto) {
         UserEntity entity = new UserEntity();
         entity.setUsername(dto.getUsername());
         entity.setApellido(dto.getApellido());
@@ -40,4 +43,12 @@ public class UserMapper {
         return entity;
     }
 
+    public List<UserDto> entityListToDtosList(List<UserEntity> entities) {
+        List<UserDto> dtos = new ArrayList<>();
+        for (UserEntity entity : entities) {
+            UserDto dto = entityToDTO(entity);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
 }

@@ -117,6 +117,12 @@ public class UserService {
         }
     }
 
+    public List<UserDto> buscarUsuarios(Long id) {
+        List<UserEntity> entities = userRepository.findAllBySupervisor(id);
+        List<UserDto> dtos = userMapper.entityListToDtosList(entities);
+        return dtos;
+    }
+
     public void softDeleteUsuario(Long id) {
         userRepository.deleteById(id);
     }

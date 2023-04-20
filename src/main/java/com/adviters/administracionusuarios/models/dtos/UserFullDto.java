@@ -53,11 +53,10 @@ public class UserFullDto {
     private  int piso;
 
     private  String departamento;
-    // relaciones con otras entidades
+
     private  String localidad;
 
     private  String provincia;
 
     private  String pais;
-
 }
