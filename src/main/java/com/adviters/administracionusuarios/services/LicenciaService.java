@@ -39,7 +39,7 @@ public class LicenciaService {
     private UserRepository userRepository;
 
 
-    public void guardar(LicenciaNuevaDto dto) {
+    public Optional<LicenciaEntity> guardar(LicenciaNuevaDto dto) {
 
         LicenciaEntity entity = licenciaMapper.dtoToNuevaEntity(dto);
         entity.setFechaPeticion(LocalDate.now().toString());
@@ -57,25 +57,59 @@ public class LicenciaService {
         entity.setSolicitante(userRepository.findById(dto.getSolicitanteId()).get());
         entity.setSupervisor(userRepository.findById(dto.getSupervisorId()).get());
 
-        licenciaRepository.save(entity);
+        LicenciaEntity savedEntity = licenciaRepository.save(entity);
+
+        return Optional.ofNullable(savedEntity);
     }
 
-    public Optional<List<LicenciaMinimaDto>> buscarLicenciasMinimas() {
+/*    public Optional<List<LicenciaMinimaDto>> buscarLicenciasMinimas() {
         List<LicenciaEntity> entities = licenciaRepository.findAll();
         List<LicenciaMinimaDto> dtos = licenciaMapper.entitiesToMinimalsDtos(entities);
         return Optional.ofNullable(dtos);
-    }
+    }*/
 
-    public Optional<LicenciaFullDto> buscarFullPorId(Long id) {
-        Optional<LicenciaEntity> optionalEntity = licenciaRepository.findById(id);
+    public Optional<LicenciaFullDto> buscarFullPorId(Long idLicencia) {
+        Optional<LicenciaEntity> optionalEntity = licenciaRepository.findById(idLicencia);
         LicenciaFullDto dto = licenciaMapper.entityToFullDto(optionalEntity.get());
         return Optional.ofNullable(dto);
     }
 
-    public Optional<List<LicenciaFullDto>> buscarTodasLasLicencias() {
+    public Optional<List<LicenciaMinimaDto>> buscarLicenciasPendientes(Long idSupervisor) {
+        List<LicenciaEntity> entities = licenciaRepository.licenciasPendientes(idSupervisor);
+        List<LicenciaMinimaDto> dtos = licenciaMapper.entitiesToMinimalsDtos(entities);
+        return Optional.ofNullable(dtos);
+    }
+
+    public Optional<List<LicenciaMinimaDto>> buscarLicenciasAprobadasPorSupervisor(Long idSupervisor) {
+        List<LicenciaEntity> entities = licenciaRepository.licenciasAprobadasPorSupervisor(idSupervisor);
+        List<LicenciaMinimaDto> dtos = licenciaMapper.entitiesToMinimalsDtos(entities);
+        return Optional.ofNullable(dtos);
+    }
+
+    public Optional<List<LicenciaMinimaDto>> buscarLicenciasAprobadasDelUsuario(Long idUsuario) {
+        List<LicenciaEntity> entities = licenciaRepository.licenciasAprobadasDelUsuario(idUsuario);
+        List<LicenciaMinimaDto> dtos = licenciaMapper.entitiesToMinimalsDtos(entities);
+        return Optional.ofNullable(dtos);
+    }
+
+    public void actualizarLicencia(Long idLicencia, String estado) {
+        LicenciaEntity licenciaAntigua = licenciaRepository.findById(idLicencia).get();
+        LicenciaEstadoEntity estadoEntity = new LicenciaEstadoEntity();
+        estadoEntity.setNombre(estado);
+        Example<LicenciaEstadoEntity> estadoExample = Example.of(estadoEntity);
+        Optional<LicenciaEstadoEntity> optionalEstado = estadoRepository.findOne(estadoExample);
+        licenciaAntigua.setEstado(optionalEstado.get());
+        licenciaRepository.save(licenciaAntigua);
+    }
+
+    public void eliminarLicencia(Long idLicencia) {
+        licenciaRepository.deleteById(idLicencia);
+    }
+
+/*    public Optional<List<LicenciaFullDto>> buscarTodasLasLicencias() {
         List<LicenciaEntity> entities = licenciaRepository.findAll();
         List<LicenciaFullDto> dtos = licenciaMapper.entitiesToDtos(entities);
         return Optional.ofNullable(dtos);
-    }
+    }*/
     
 }
