@@ -27,7 +27,7 @@ public class UserEntity {
     @Column(name = "apellido")
     private String apellido;
 
-    @Column(name = "password")
+    @Column(name = "clave")
     private String password;
 
     @Column(name = "id_supervisor")
@@ -74,6 +74,9 @@ public class UserEntity {
 
     @Column(name = "departamento")
     private String departamento;
+
+    @Column(name = "activo")
+    private boolean activo = true;
 
     @OneToOne(targetEntity = RolEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="fk_id_rol")

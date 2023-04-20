@@ -2,6 +2,7 @@ package com.adviters.administracionusuarios.utils.mappers;
 
 import com.adviters.administracionusuarios.models.dtos.UserDto;
 
+import com.adviters.administracionusuarios.models.dtos.UserLoggedDto;
 import com.adviters.administracionusuarios.models.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,15 @@ public class UserMapper {
         dto.setRol(entity.getRol().getNombre());
         dto.setId_supervisor(entity.getId_supervisor());
         dto.setDias_de_vacaciones(entity.getDias_de_vacaciones());
+        return dto;
+    }
+
+    public UserLoggedDto entityToLoggedDto(UserEntity entity) {
+        UserLoggedDto dto = new UserLoggedDto();
+        dto.setId(entity.getId());
+        dto.setNombre(entity.getUsername());
+        dto.setRol(entity.getRol().getNombre());
+        dto.setFoto(entity.getFoto());
         return dto;
     }
 

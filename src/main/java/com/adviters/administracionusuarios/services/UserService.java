@@ -2,16 +2,16 @@ package com.adviters.administracionusuarios.services;
 
 import com.adviters.administracionusuarios.models.dtos.UserDto;
 import com.adviters.administracionusuarios.models.dtos.UserFullDto;
+import com.adviters.administracionusuarios.models.dtos.UserLoggedDto;
+import com.adviters.administracionusuarios.models.dtos.UserLoginDto;
 import com.adviters.administracionusuarios.models.entities.*;
 import com.adviters.administracionusuarios.repositories.*;
 import com.adviters.administracionusuarios.utils.mappers.UserFullMapper;
 import com.adviters.administracionusuarios.utils.mappers.UserMapper;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,6 +106,18 @@ public class UserService {
         return userRepository.existeUsuarioPorCredenciales(username, password);
     }
 
+    public Optional<UserLoggedDto> buscarUsuarioPorCredenciales(UserLoginDto dto) {
 
+        Optional<UserEntity> userEntityOptional = userRepository.obtenerUsuarioPorNombreYClave(dto.getUsername(), dto.getPassword());
+        if (userEntityOptional.isPresent()) {
+            UserLoggedDto logged = userMapper.entityToLoggedDto(userEntityOptional.get());
+            return Optional.ofNullable(logged);
+        } else {
+            return Optional.empty();
+        }
+    }
 
+    public void softDeleteUsuario(Long id) {
+        userRepository.deleteById(id);
+    }
 }
