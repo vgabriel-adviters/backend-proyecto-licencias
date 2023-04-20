@@ -61,6 +61,30 @@ public class UserFullMapper {
         return entity;
     }
 
+    public UserEntity dtoToUptadeEntity(UserFullDto dto) {
+        UserEntity entity = new UserEntity();
+        entity.setId(dto.getId());
+        entity.setUsername(dto.getUsername());
+        entity.setApellido(dto.getApellido());
+        entity.setPassword(dto.getPassword());
+        entity.setId_supervisor(dto.getId_supervisor());
+        entity.setDias_de_vacaciones(dto.getDias_de_vacaciones());
+        entity.setFecha_de_nacimiento(dto.getFecha_de_nacimiento());
+        entity.setFecha_de_ingreso(dto.getFecha_de_ingreso());
+        entity.setDni(dto.getDni());
+        entity.setCuil(dto.getCuil());
+        entity.setEmail(dto.getEmail());
+        entity.setTelefono(dto.getTelefono());
+        entity.setCodigo_postal(dto.getCodigo_postal());
+        entity.setFoto(dto.getFoto());
+        entity.setCalle(dto.getCalle());
+        entity.setAltura(dto.getAltura());
+        entity.setTorre(dto.getTorre());
+        entity.setPiso(dto.getPiso());
+        entity.setDepartamento(dto.getDepartamento());
+        return entity;
+    }
+
     public List<UserFullDto> entityListToDtoList(List<UserEntity> entities) {
         List<UserFullDto> dtos = new ArrayList<>();
         for (UserEntity entity : entities) {

@@ -102,6 +102,51 @@ public class UserService {
         userRepository.save(entity);
     }
 
+    public void modificarUsuario(UserFullDto dto){
+        UserEntity entity = userFullMapper.dtoToUptadeEntity(dto);
+
+        RolEntity rolEntity = new RolEntity();
+        rolEntity.setNombre(dto.getRol());
+        Example<RolEntity> rolExample = Example.of(rolEntity);
+        Optional<RolEntity> optionalRol = rolRepository.findOne(rolExample);
+        if(optionalRol.isPresent()) {
+            entity.setRol(optionalRol.get());
+        }
+
+        PaisEntity paisEntity = new PaisEntity();
+        paisEntity.setNombre(dto.getPais());
+        Example<PaisEntity> paisExample = Example.of(paisEntity);
+        Optional<PaisEntity> paisOptional = paisRepository.findOne(paisExample);
+        if (paisOptional.isPresent()) {
+            entity.setPais(paisOptional.get());
+        } else {
+            entity.setPais(paisEntity);
+        }
+
+        ProvinciaEntity provinciaEntity = new ProvinciaEntity();
+        provinciaEntity.setNombre(dto.getProvincia());
+        Example<ProvinciaEntity> provinciaExample = Example.of(provinciaEntity);
+        Optional<ProvinciaEntity> provinciaOptional = provinciaRepository.findOne(provinciaExample);
+        if (provinciaOptional.isPresent()) {
+            entity.setProvincia(provinciaOptional.get());
+        } else {
+            entity.setProvincia(provinciaEntity);
+        }
+
+        LocalidadEntity localidadEntity = new LocalidadEntity();
+        localidadEntity.setNombre(dto.getLocalidad());
+        Example<LocalidadEntity> localidadExample = Example.of(localidadEntity);
+        Optional<LocalidadEntity> localidadOptional = localidadRepository.findOne(localidadExample);
+        if (localidadOptional.isPresent()) {
+            entity.setLocalidad(localidadOptional.get());
+        } else {
+            entity.setLocalidad(localidadEntity);
+        }
+
+        userRepository.save(entity);
+
+    }
+
     public boolean exists(String username, String password) {
         return userRepository.existeUsuarioPorCredenciales(username, password);
     }

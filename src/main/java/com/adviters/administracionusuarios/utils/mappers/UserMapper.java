@@ -16,6 +16,7 @@ public class UserMapper {
         dto.setPassword(entity.getPassword());
         dto.setRol(entity.getRol().getNombre());
         dto.setId_supervisor(entity.getId_supervisor());
+        dto.setFoto(entity.getFoto());
         dto.setDias_de_vacaciones(entity.getDias_de_vacaciones());
         return dto;
     }
@@ -26,6 +27,7 @@ public class UserMapper {
         entity.setApellido(dto.getApellido());
         entity.setPassword(dto.getPassword());
         entity.setId_supervisor(dto.getId_supervisor());
+        entity.setFoto(dto.getFoto());
         entity.setDias_de_vacaciones(dto.getDias_de_vacaciones());
         return entity;
     }

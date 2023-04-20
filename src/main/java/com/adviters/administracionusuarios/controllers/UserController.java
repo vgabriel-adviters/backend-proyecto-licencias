@@ -46,6 +46,16 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/modificar")
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> modificarUsuario(@RequestBody UserFullDto dto) {
+        userService.modificarUsuario(dto);
+        return ResponseEntity.ok().build();
+    }
+
+
+
     @GetMapping()
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)

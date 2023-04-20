@@ -21,6 +21,8 @@ public class UserDto {
 
     private String password;
 
+    private String foto;
+
     private String rol;
 
     private Long id_supervisor;
