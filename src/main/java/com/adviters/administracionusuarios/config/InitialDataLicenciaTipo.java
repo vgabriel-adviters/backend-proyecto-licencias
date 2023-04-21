@@ -31,7 +31,15 @@ public class InitialDataLicenciaTipo {
             tipo3.setId(3L);
             tipo3.setNombre("vacaciones");
 
-            tipoRepository.saveAll(Arrays.asList(tipo1, tipo2, tipo3));
+            LicenciaTipoEntity tipo4 = new LicenciaTipoEntity();
+            tipo4.setId(4L);
+            tipo4.setNombre("licencia medica");
+
+            LicenciaTipoEntity tipo5 = new LicenciaTipoEntity();
+            tipo5.setId(5L);
+            tipo5.setNombre("examen");
+
+            tipoRepository.saveAll(Arrays.asList(tipo1, tipo2, tipo3, tipo4, tipo5));
         }
     }
 }
