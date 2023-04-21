@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
 @Component
-public class InitialDataLoader {
+public class InitialRolLoader {
     @Autowired
     private RolRepository rolRepository;
 
