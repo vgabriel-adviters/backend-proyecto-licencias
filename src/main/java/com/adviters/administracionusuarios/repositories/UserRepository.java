@@ -12,12 +12,15 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM UserEntity u WHERE u.username = :username AND u.password = :password")
-    boolean existeUsuarioPorCredenciales(@Param("username") String username, @Param("password") String password);
+/*    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM UserEntity u WHERE u.username = :username AND u.password = :password")
+    boolean existeUsuarioPorCredenciales(@Param("username") String username, @Param("password") String password);*/
 
     @Override
     @Query("SELECT u FROM UserEntity u WHERE u.activo = true")
     List<UserEntity> findAll();
+
+    @Query("SELECT u FROM UserEntity u JOIN u.rol r WHERE r.nombre = 'Supervisor'")
+    List<UserEntity> findAllSupervisores();
 
     @Query("SELECT u FROM UserEntity u WHERE u.id_supervisor = :id AND u.activo = true")
     List<UserEntity> findAllBySupervisor(@Param("id") Long id);

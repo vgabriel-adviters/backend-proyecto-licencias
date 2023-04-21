@@ -1,9 +1,6 @@
 package com.adviters.administracionusuarios.controllers;
 
-import com.adviters.administracionusuarios.models.dtos.UserDto;
-import com.adviters.administracionusuarios.models.dtos.UserFullDto;
-import com.adviters.administracionusuarios.models.dtos.UserLoggedDto;
-import com.adviters.administracionusuarios.models.dtos.UserLoginDto;
+import com.adviters.administracionusuarios.models.dtos.*;
 import com.adviters.administracionusuarios.models.entities.UserEntity;
 import com.adviters.administracionusuarios.repositories.UserRepository;
 import com.adviters.administracionusuarios.services.UserService;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 @CrossOrigin
@@ -69,6 +65,22 @@ public class UserController {
     @GetMapping("/supervisor/{id}")
     public List<UserDto> obtenerUsuariosDeSupervisor(@PathVariable Long id) {
         return userService.buscarUsuarios(id);
+    }
+
+    @GetMapping("/supervisores")
+    public List<UserMinimoDto> obtenerSupervisores() {
+        List<UserMinimoDto> supervisores = userService.buscarSupervisores();
+        return supervisores;
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> modificarDatosDeUsuario(@PathVariable Long id, @RequestBody UserFullDto fullDto) {
+        Optional<UserEntity> usuarioActualizado = userService.actualizar(id, fullDto);
+        if (usuarioActualizado.isPresent()) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @DeleteMapping("/{id}")

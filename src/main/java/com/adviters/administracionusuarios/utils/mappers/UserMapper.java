@@ -3,6 +3,7 @@ package com.adviters.administracionusuarios.utils.mappers;
 import com.adviters.administracionusuarios.models.dtos.UserDto;
 
 import com.adviters.administracionusuarios.models.dtos.UserLoggedDto;
+import com.adviters.administracionusuarios.models.dtos.UserMinimoDto;
 import com.adviters.administracionusuarios.models.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,14 @@ public class UserMapper {
         dto.setRol(entity.getRol().getNombre());
         dto.setId_supervisor(entity.getId_supervisor());
         dto.setDias_de_vacaciones(entity.getDias_de_vacaciones());
+        return dto;
+    }
+
+    public UserMinimoDto entityToMinimoDto(UserEntity entity) {
+        UserMinimoDto dto = new UserMinimoDto();
+        dto.setIdUsuario(entity.getId());
+        dto.setUsername(entity.getUsername());
+        dto.setApellido(entity.getApellido());
         return dto;
     }
 
@@ -47,6 +56,15 @@ public class UserMapper {
         List<UserDto> dtos = new ArrayList<>();
         for (UserEntity entity : entities) {
             UserDto dto = entityToDTO(entity);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    public List<UserMinimoDto> entityListToMinimoDtoList(List<UserEntity> entities) {
+        List<UserMinimoDto> dtos = new ArrayList<>();
+        for (UserEntity entity : entities) {
+            UserMinimoDto dto = entityToMinimoDto(entity);
             dtos.add(dto);
         }
         return dtos;
